@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.tuliofusco'
+group = 'com.tuliofusco.fuscadabot'
 version = '1.0.0'
 
 repositories {
