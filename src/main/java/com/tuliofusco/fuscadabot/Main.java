@@ -15,9 +15,13 @@ public class Main {
     private static String token = dotenv.get("DISCORD_BOT_TOKEN");
     
     public static void main(String[] args) throws LoginException {
-        JDA jda = JDABuilder.createDefault(token).enableIntents(GatewayIntent.MESSAGE_CONTENT).build(); // starts the bot
-        jda.addEventListener(new Listeners()); // allows JDA to call events
-        jda.addEventListener(new Sum());
+        JDA jda = JDABuilder.createDefault(token).enableIntents(GatewayIntent.MESSAGE_CONTENT).build(); // inicia o bot
+
+        jda.addEventListener(new Listeners()); // permite o JDA chamar eventos
+
+        CommandManager manager = new CommandManager();
+        manager.addCommand(new Sum()); // adiciona o comando Sum
+        jda.addEventListener(manager); // permite o JDA chamar comandos
     }
 
 }
