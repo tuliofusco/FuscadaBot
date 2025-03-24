@@ -1,5 +1,6 @@
 package com.tuliofusco.fuscadabot;
 
+import com.tuliofusco.fuscadabot.commands.Buttons;
 import com.tuliofusco.fuscadabot.commands.Embed;
 import com.tuliofusco.fuscadabot.commands.Sum;
 import com.tuliofusco.fuscadabot.commands.core.CommandManager;
@@ -25,6 +26,7 @@ public class Main {
         CommandManager manager = new CommandManager();
         manager.addCommand(new Sum()); // adiciona o comando Sum
         manager.addCommand(new Embed()); // adiciona o comando Embed
+        manager.addCommand(new Buttons()); // adiciona o comando Buttons
         jda.addEventListener(manager); // permite o JDA chamar comandos
     }
 

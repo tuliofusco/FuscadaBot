@@ -1,11 +1,23 @@
 package com.tuliofusco.fuscadabot.listeners;
 
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class Listeners extends ListenerAdapter {
 
 //    private Dotenv dotenv = Dotenv.load();
 //    private String myGuildId = dotenv.get("TEST_GUILD_ID");
+
+    @Override
+    public void onButtonInteraction(ButtonInteractionEvent event) {
+        if(event.getButton().getId().equals("yes-button")){
+            event.reply("Nice!").queue();
+        }else if(event.getButton().getId().equals("no-button")){
+            event.reply("Aww, too bad!").queue();
+        }
+        event.getMessage().delete().queue();
+    }
+
 
 //    @Override
 //    public void onReady(ReadyEvent event) { // evento de inicio do bot
