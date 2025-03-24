@@ -1,4 +1,4 @@
-package com.tuliofusco.fuscadabot;
+package com.tuliofusco.fuscadabot.commands.core;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -12,13 +12,17 @@ public class CommandManager extends ListenerAdapter {
 
     private List<ICommand> commands = new ArrayList<>();
 
-    // percorre por todas as guilds e registra cada comando usando o upsertCommand.
+    // ao iniciar (onReady), percorre por todas as guilds e registra cada comando usando o upsertCommand.
     // isso garante que os comandos estejam disponiveis em todas as guilds.
     @Override
     public void onReady(ReadyEvent event) {
         for (Guild guild : event.getJDA().getGuilds()) {
             for (ICommand command : commands){
-                guild.upsertCommand(command.getName(), command.getDescription()).addOptions(command.getOptions()).queue();
+                if (command.getOptions() == null){
+                    guild.upsertCommand(command.getName(), command.getDescription()).queue();
+                } else{
+                    guild.upsertCommand(command.getName(), command.getDescription()).addOptions(command.getOptions()).queue();
+                }
             }
         }
     }

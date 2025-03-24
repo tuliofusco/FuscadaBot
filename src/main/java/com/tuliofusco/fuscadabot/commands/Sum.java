@@ -1,6 +1,6 @@
 package com.tuliofusco.fuscadabot.commands;
 
-import com.tuliofusco.fuscadabot.ICommand;
+import com.tuliofusco.fuscadabot.commands.core.ICommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
