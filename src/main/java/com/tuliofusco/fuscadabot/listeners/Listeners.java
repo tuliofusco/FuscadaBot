@@ -1,7 +1,12 @@
 package com.tuliofusco.fuscadabot.listeners;
 
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.modals.ModalMapping;
+
+import java.awt.*;
 
 public class Listeners extends ListenerAdapter {
 
@@ -18,8 +23,36 @@ public class Listeners extends ListenerAdapter {
         event.getMessage().delete().queue();
     }
 
+    @Override
+    public void onModalInteraction(ModalInteractionEvent event) {
+        if(event.getModalId().equals("person-modal")){
+            ModalMapping nameValue = event.getValue("name-field");
+            ModalMapping ageValue = event.getValue("age-field");
+            ModalMapping descriptionValue = event.getValue("description-field");
 
-//    @Override
+            String name = nameValue.getAsString();
+            String description = descriptionValue.getAsString();
+
+            String age;
+            if(ageValue.getAsString().isBlank()){
+                age = "N/A";
+            }else{
+                age = ageValue.getAsString();
+            }
+
+            EmbedBuilder embed = new EmbedBuilder();
+            embed.setTitle(name + " description");
+            embed.addField("Name", name, false);
+            embed.addField("Age", age, false);
+            embed.addField("Description", description, false);
+
+            embed.setColor(Color.BLUE);
+
+            event.replyEmbeds(embed.build()).queue();
+        }
+    }
+
+    //    @Override
 //    public void onReady(ReadyEvent event) { // evento de inicio do bot
 ////        Guild guild = event.getJDA().getGuildById(myGuildId); // para comandos de barra de guilds especificas
 //        event.getJDA().upsertCommand("sum", "Gives the sum of two numbers").addOptions( // para comandos de barra globais
