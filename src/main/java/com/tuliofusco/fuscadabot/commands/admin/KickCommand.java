@@ -4,9 +4,7 @@ import com.tuliofusco.fuscadabot.commands.core.ICommand;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 
@@ -15,52 +13,54 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class BanCommand implements ICommand {
+public class KickCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "ban";
+        return "kick";
     }
 
     @Override
     public String getDescription() {
-        return "Bane uma conta permanentemente.";
+        return "Kicka uma conta do servidor";
     }
 
     @Override
     public List<OptionData> getOptions() {
-        List<OptionData> options = new ArrayList<OptionData>();
-        options.add(new OptionData(OptionType.USER, "usuario", "O usuário para banir", true));
-        options.add(new OptionData(OptionType.STRING, "motivo", "O Motivo do Banimento", false));
+        List<OptionData> options = new ArrayList<>();
+
+        options.add(new OptionData(OptionType.USER, "usuario", "Usuário para dar kick", true));
+        options.add(new OptionData(OptionType.STRING, "motivo", "Motivo do kick", false));
+
         return options;
     }
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {
         Member member = event.getMember();
-        if (member.hasPermission(Permission.BAN_MEMBERS)){
-            Member banned = event.getOption("usuario").getAsMember();
+        if (member.hasPermission(Permission.KICK_MEMBERS)){
+            Member kicked = event.getOption("usuario").getAsMember();
             String reason = event.getOption("motivo") != null ? event.getOption("motivo").getAsString() : null;
-            if (banned != null){
+            if (kicked != null){
                 EmbedBuilder embed = new EmbedBuilder();
                 if (reason != null){
-                    banned.ban(0, TimeUnit.SECONDS)
+                    kicked.kick()
                             .reason(reason)
                             .queue();
 
-                            embed.setTitle("BANIMENTO")
-                            .addField("Banido", banned.getAsMention(), false)
-                            .addField("Banido por", member.getAsMention(), false)
+                    embed.setTitle("KICK")
+                            .addField("Kickado", kicked.getAsMention(), false)
+                            .addField("Kickado por", member.getAsMention(), false)
                             .addField("Motivo", reason, false)
-                            .setColor(Color.BLACK);
+                            .setColor(Color.DARK_GRAY);
                 }else{
-                    banned.ban(0, TimeUnit.SECONDS)
+                    kicked.ban(0, TimeUnit.SECONDS)
                             .queue();
 
-                            embed.setTitle("BANIMENTO")
-                            .addField("Banido", banned.getAsMention(), false)
-                            .addField("Banido por", member.getAsMention(), false)
-                            .setColor(Color.BLACK);
+                    embed.setTitle("KICK")
+                            .addField("Kickado", kicked.getAsMention(), false)
+                            .addField("Kickado por", member.getAsMention(), false)
+                            .setColor(Color.DARK_GRAY);
                 }
                 event.replyEmbeds(embed.build()).queue();
             }else {
