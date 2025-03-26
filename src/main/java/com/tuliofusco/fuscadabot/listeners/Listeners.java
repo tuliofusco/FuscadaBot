@@ -16,9 +16,9 @@ public class Listeners extends ListenerAdapter {
     @Override
     public void onButtonInteraction(ButtonInteractionEvent event) {
         if(event.getButton().getId().equals("yes-button")){
-            event.reply("Nice!").queue();
+            event.reply("Boa!").queue();
         }else if(event.getButton().getId().equals("no-button")){
-            event.reply("Aww, too bad!").queue();
+            event.reply("Ahh, que isso?!").queue();
         }
         event.getMessage().delete().queue();
     }
@@ -41,10 +41,10 @@ public class Listeners extends ListenerAdapter {
             }
 
             EmbedBuilder embed = new EmbedBuilder();
-            embed.setTitle(name + " description");
-            embed.addField("Name", name, false);
-            embed.addField("Age", age, false);
-            embed.addField("Description", description, false);
+            embed.setTitle("Descrição de " + name);
+            embed.addField("Nome", name, false);
+            embed.addField("Idade", age, false);
+            embed.addField("Descrição", description, false);
 
             embed.setColor(Color.BLUE);
 

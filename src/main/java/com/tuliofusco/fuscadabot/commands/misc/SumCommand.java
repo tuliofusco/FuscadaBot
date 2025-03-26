@@ -1,4 +1,4 @@
-package com.tuliofusco.fuscadabot.commands;
+package com.tuliofusco.fuscadabot.commands.misc;
 
 import com.tuliofusco.fuscadabot.commands.core.ICommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sum implements ICommand {
+public class SumCommand implements ICommand {
 
     @Override
     public String getName() {
@@ -18,15 +18,15 @@ public class Sum implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Gives the sum of two numbers";
+        return "Dá a soma de dois números";
     }
 
     @Override
     public List<OptionData> getOptions() {
         List<OptionData> options = new ArrayList<>();
 
-        options.add(new OptionData(OptionType.INTEGER, "number1", "The first number", true));
-        options.add(new OptionData(OptionType.INTEGER, "number2", "The second number", true));
+        options.add(new OptionData(OptionType.INTEGER, "number1", "Primeiro número", true));
+        options.add(new OptionData(OptionType.INTEGER, "number2", "Segundo número", true));
 
         return options;
     }

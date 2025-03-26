@@ -1,4 +1,4 @@
-package com.tuliofusco.fuscadabot.commands;
+package com.tuliofusco.fuscadabot.commands.misc;
 
 import com.tuliofusco.fuscadabot.commands.core.ICommand;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import java.awt.*;
 import java.util.List;
 
-public class Embed implements ICommand {
+public class EmbedCommand implements ICommand {
 
     @Override
     public String getName() {
@@ -17,7 +17,7 @@ public class Embed implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Sends an embed";
+        return "Envia uma embed teste";
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Embed implements ICommand {
     @Override
     public void execute(SlashCommandInteractionEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("Test Embed");
+        embed.setTitle("Embed teste");
         embed.setDescription("Description");
         embed.addField("Field 1", "Value", false);
         embed.addField("Field 2", "Value", false);

@@ -1,9 +1,10 @@
 package com.tuliofusco.fuscadabot;
 
-import com.tuliofusco.fuscadabot.commands.Buttons;
-import com.tuliofusco.fuscadabot.commands.Embed;
-import com.tuliofusco.fuscadabot.commands.Modals;
-import com.tuliofusco.fuscadabot.commands.Sum;
+import com.tuliofusco.fuscadabot.commands.admin.BanCommand;
+import com.tuliofusco.fuscadabot.commands.misc.ButtonCommand;
+import com.tuliofusco.fuscadabot.commands.misc.EmbedCommand;
+import com.tuliofusco.fuscadabot.commands.misc.ModalCommand;
+import com.tuliofusco.fuscadabot.commands.misc.SumCommand;
 import com.tuliofusco.fuscadabot.commands.core.CommandManager;
 import com.tuliofusco.fuscadabot.listeners.Listeners;
 import net.dv8tion.jda.api.JDA;
@@ -25,10 +26,16 @@ public class Main {
         jda.addEventListener(new Listeners()); // permite o JDA chamar eventos
 
         CommandManager manager = new CommandManager();
-        manager.addCommand(new Sum()); // adiciona o comando Sum
-        manager.addCommand(new Embed()); // adiciona o comando Embed
-        manager.addCommand(new Buttons()); // adiciona o comando Buttons
-        manager.addCommand(new Modals()); // adiciona o comando Modals
+
+        // COMANDOS ADMIN
+        manager.addCommand(new BanCommand()); // adiciona o comando BanCommand
+
+        // COMANDOS MISC
+        manager.addCommand(new SumCommand()); // adiciona o comando SumCommand
+        manager.addCommand(new EmbedCommand()); // adiciona o comando EmbedCommand
+        manager.addCommand(new ButtonCommand()); // adiciona o comando ButtonCommand
+        manager.addCommand(new ModalCommand()); // adiciona o comando ModalCommand
+
         jda.addEventListener(manager); // permite o JDA chamar comandos
     }
 

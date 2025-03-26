@@ -1,17 +1,15 @@
-package com.tuliofusco.fuscadabot.commands;
+package com.tuliofusco.fuscadabot.commands.misc;
 
 import com.tuliofusco.fuscadabot.commands.core.ICommand;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
 
-import java.awt.*;
 import java.util.List;
 
-public class Buttons implements ICommand {
+public class ButtonCommand implements ICommand {
 
     @Override
     public String getName() {
@@ -31,11 +29,11 @@ public class Buttons implements ICommand {
     @Override
     public void execute(SlashCommandInteractionEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("Question");
-        embed.setDescription("Do you like pizza?");
+        embed.setTitle("Pergunta");
+        embed.setDescription("Você gosta de pizza?");
 
-        Button yesButton = Button.danger("yes-button", "Yes");
-        Button noButton = Button.danger("no-button", "No");
+        Button yesButton = Button.danger("yes-button", "Sim");
+        Button noButton = Button.danger("no-button", "Não");
 
         ReplyCallbackAction reply = event.replyEmbeds(embed.build()).addActionRow(yesButton, noButton);
 
