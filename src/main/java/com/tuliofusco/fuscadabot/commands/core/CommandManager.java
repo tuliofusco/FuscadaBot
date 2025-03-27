@@ -43,4 +43,8 @@ public class CommandManager extends ListenerAdapter {
         commands.add(command);
     }
 
+    public List<ICommand> getCommands() {
+        return commands;
+    }
+
 }
