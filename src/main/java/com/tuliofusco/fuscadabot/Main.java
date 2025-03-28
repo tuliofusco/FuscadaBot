@@ -2,6 +2,7 @@ package com.tuliofusco.fuscadabot;
 
 import com.tuliofusco.fuscadabot.commands.admin.BanCommand;
 import com.tuliofusco.fuscadabot.commands.admin.KickCommand;
+import com.tuliofusco.fuscadabot.commands.admin.WarnCommand;
 import com.tuliofusco.fuscadabot.commands.fun.PingPongCommand;
 import com.tuliofusco.fuscadabot.commands.misc.*;
 import com.tuliofusco.fuscadabot.commands.core.CommandManager;
@@ -35,6 +36,7 @@ public class Main {
         // COMANDOS ADMIN
         manager.addCommand(new BanCommand()); // adiciona o comando BanCommand
         manager.addCommand(new KickCommand()); // adiciona o comando kickCommand
+        manager.addCommand(new WarnCommand()); // adiciona o comando WarnCommand
 
         // COMANDOS MISC
         manager.addCommand(new HelpCommand()); // adiciona o comando HelpCommand
