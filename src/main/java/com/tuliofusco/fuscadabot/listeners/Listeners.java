@@ -1,6 +1,7 @@
 package com.tuliofusco.fuscadabot.listeners;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -12,6 +13,11 @@ public class Listeners extends ListenerAdapter {
 
 //    private Dotenv dotenv = Dotenv.load();
 //    private String myGuildId = dotenv.get("TEST_GUILD_ID");
+
+    @Override
+    public void onGuildMemberJoin(GuildMemberJoinEvent event) {
+
+    }
 
     @Override
     public void onButtonInteraction(ButtonInteractionEvent event) {
